@@ -655,10 +655,10 @@ void* os::malloc(size_t size, MEMFLAGS memflags, const NativeCallStack& stack) {
     ptr = (u_char*)::malloc(alloc_size);
   }
 
-#ifdef ASSERT
   if (ptr == NULL) {
     return NULL;
   }
+#ifdef ASSERT
   // Wrap memory with guard
   GuardedMemory guarded(ptr, size + nmt_header_size);
   ptr = guarded.get_user_ptr();
